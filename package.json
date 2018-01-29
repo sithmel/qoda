@@ -1,6 +1,6 @@
 {
   "name": "qoda",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A queue implementation for accessing shared resources",
   "main": "index.js",
   "scripts": {
