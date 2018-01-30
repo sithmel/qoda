@@ -69,4 +69,26 @@ describe('Qoda', function () {
     qoda.push(2)
     assert.deepEqual(qoda.toArray(), [2, 1, 3])
   })
+
+  it('sets custom priority', function () {
+    var qoda = Qoda(function (a, b) {
+      var pa = a.data.priority || 0
+      var pb = b.data.priority || 0
+      if (pa === pb) {
+        return a.ts - b.ts
+      } else {
+        return pb - pa
+      }
+    })
+
+    qoda.push({ v: '1', priority: 1 })
+    qoda.push({ v: '2' })
+    qoda.push({ v: '3', priority: 1 })
+    assert.deepEqual(qoda.toArray(),
+      [
+        { v: '1', priority: 1 },
+        { v: '3', priority: 1 },
+        { v: '2' }
+      ])
+  })
 })
